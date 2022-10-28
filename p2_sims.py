@@ -12,10 +12,14 @@ job_list = {
  "C++ developer":{"salary":45, "gladness_less": 25 },
  "Rust developer":{"salary":70, "gladness_less": 1 },
  }
-
+phone_list = {
+ "Iphone":{"storage":128},
+ "Realme":{"storage":64},
+ "Redmi":{"storage":32},
+}
 
 class Human:
-    def __init__(self, name="Human",job=None, home=None,car=None):
+    def __init__(self, name="Human",job=None, home=None,car=None, phone=None):
         self.name = name
         self.money = 100
         self.gladness = 50
@@ -23,6 +27,7 @@ class Human:
         self.job = job
         self.car = car
         self.home = home
+        self.phone = phone
 
     def get_home(self):
         self.home = House()
@@ -37,6 +42,9 @@ class Human:
             self.to_repair()
             return
         self.job = Job(job_list)
+
+    def get_phone(self):
+        self.phone = Phone(phone_list)
 
     def eat(self):
         if self.home.food <= 0:
@@ -97,6 +105,9 @@ class Human:
         self.car.strength += 100
         self.money -= 50
 
+    def to_repair_phone(self):
+        self.money -= 20
+
     def days_indexes(self, day):
         day = f" Today the {day} of {self.name}'s life "
         print(f"{day:=^50}", "\n")
@@ -137,6 +148,9 @@ class Human:
         if self.job is None:
             self.get_job()
             print(f"I don't have a job, I'm going to get a job{self.job.job}with salary {self.job.salary}")
+        if self.phone is None:
+            self.get_phone()
+            print(f"I bought a phone{self.phone}with storage {self.phone.storage}")
         self.days_indexes(day)
 
         dice = random.randint(1, 4)
@@ -198,6 +212,10 @@ class Job:
         self.salary=job_list[self.job]["salary"]
         self.gladness_less=job_list[self.job]["gladness_less"]
 
+class Phone:
+    def __init__(self, phone_list):
+        self.phone=random.choice(list(phone_list))
+        self.storage=phone_list[self.phone]["storage"]
 
 nick = Human(name="Nick")
 for day in range(1,8):
