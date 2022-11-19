@@ -1,4 +1,5 @@
 import random
+import logging
 
 brands_of_car = {
  "BMW":{"fuel":100, "strength":100, "consumption": 6},
@@ -238,3 +239,16 @@ nick = Human(name="Nick")
 for day in range(1,8):
     if nick.live(day) == False:
         break
+
+
+logging.basicConfig(level=logging.DEBUG,
+                    filename="simslogs.log",
+                    filemode="w",
+                    formatTime(record, datefmt=None),
+                    format="We have next massage:%(asctime)s:%(levelname)s:%(message)s")
+
+logging.debug("debug")
+logging.info("info")
+logging.warning("warning")
+logging.error("error")
+logging.critical("critical")
