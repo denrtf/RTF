@@ -1,7 +1,7 @@
 import logging
 
 logging.basicConfig(level=logging.DEBUG,
-                    filename="logs.log",
+                    filename="simslogs.log",
                     filemode="w",
                     format="We have next massage:%(asctime)s:%(levelname)s:%(message)s")
 
