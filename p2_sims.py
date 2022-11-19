@@ -17,9 +17,18 @@ phone_list = {
  "Realme":{"storage":64},
  "Redmi":{"storage":32},
 }
+time_list = {
+ "morning":{"time":9},
+ "afternoon":{"time":15},
+ "evening":{"time":20},
+}
+temperature_list = {
+ "hot":{"temperature":25},
+ "cold":{"temperature":0},
+}
 
 class Human:
-    def __init__(self, name="Human",job=None, home=None,car=None, phone=None):
+    def __init__(self, name="Human",job=None, home=None,car=None, phone=None, time=None, temperature=None ):
         self.name = name
         self.money = 100
         self.gladness = 50
@@ -28,9 +37,14 @@ class Human:
         self.car = car
         self.home = home
         self.phone = phone
+        self.time = time
+        self.temperature = temperature
 
     def get_home(self):
         self.home = House()
+
+    def get_temperature(self):
+        self.temperature = Temperature(temperature_list)
 
     def get_car(self):
         self.car = Auto(brands_of_car)
@@ -45,6 +59,9 @@ class Human:
 
     def get_phone(self):
         self.phone = Phone(phone_list)
+
+    def get_time(self):
+        self.time = Time(time_list)
 
     def eat(self):
         if self.home.food <= 0:
